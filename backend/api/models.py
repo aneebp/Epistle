@@ -148,7 +148,7 @@ class Bookmark(models.Model):
 
 
 class Notification(models.Model):
-    NOTI_TYPE = ( ("Like", "Like"), ("Comment", "Comment"), ("Bookmark", "Bookmark"))
+    NOTI_TYPE = ( ("Like", "Like"), ("Comment", "Comment"))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     type = models.CharField(max_length=100, choices=NOTI_TYPE)
