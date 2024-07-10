@@ -14,6 +14,7 @@ urlpatterns = [
     path('post/like',api_views.LikeView.as_view(),name='post_like'),
     path('post/comment',api_views.CommentView.as_view(),name='comment'),
     path('post/bookmark',api_views.BookmarkView.as_view(),name="bookmark"),
+    path('author/dashboard/<user_id>',api_views.AuthorDashboardView.as_view(),name='dashboard')
 
     
 ]

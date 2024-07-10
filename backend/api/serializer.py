@@ -134,3 +134,4 @@ class AuthorSerializer(serializers.Serializer):
     bookmarks = serializers.IntegerField(default=0)
 
     
+

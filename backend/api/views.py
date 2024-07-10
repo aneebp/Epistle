@@ -152,3 +152,32 @@ class BookmarkView(APIView):
                 post=post,
             )
     
+class AuthorDashboardView(generics.ListAPIView):
+    serializer_class = api_serializer.AuthorSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        user = api_models.User.objects.get(id=user_id)
+
+        views = api_models.Post.objects.filter(user=user).aggregate(views = Sum('view'))['views']
+        posts = api_models.Post.objects.filter(user=user).count()
+        likes = api_models.Post.objects.filter(user=user).aggregate(likes = Sum('likes'))['likes']
+        bookmark = api_models.Bookmark.objects.filter(post__user=user).count()
+
+        return [{
+            "views":views,
+            "posts":posts,
+            "likes":likes,
+            "bookmark":bookmark,
+
+        }]
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+
+    
