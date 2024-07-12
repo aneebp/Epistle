@@ -35,12 +35,13 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 class RegisterView(generics.CreateAPIView):
-    permission_classes = [AllowAny]
+    queryset = api_models.User.objects.all()
+    permission_classes = (AllowAny,)  
     serializer_class = api_serializer.RegisterSerializer
 
 
 class ProfileView(generics.RetrieveUpdateAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = (AllowAny,)
     serializer_class = api_serializer.ProfileSerializer
 
     def get_object(self):
