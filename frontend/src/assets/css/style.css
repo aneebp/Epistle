@@ -1,18 +1,4 @@
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
 
-/**
- * copyright 2022 codewithsadee
- */
-
-
-
-
-
-/*-----------------------------------*\
-  #CUSTOM PROPERTY
-\*-----------------------------------*/
 
 :root {
 
@@ -262,7 +248,7 @@ body.nav-active { overflow: hidden; }
 .btn:is(:hover, :focus-visible) { background-position: right; }
 
 .btn-primary {
-  padding: 8px 16px;
+  padding: 18px 28px;
   border-radius: var(--radius-6);
 }
 
@@ -383,6 +369,46 @@ body.nav-active { overflow: hidden; }
   transition: 0.5s var(--cubic-out);
 }
 
+.user_profile {
+  position: absolute;
+  top: 25%;
+  right: 3%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_profile img {
+  width: 8vw; 
+  height: 8vw; 
+  max-width: 50px; 
+  max-height: 50px; 
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-white);
+}
+
+
+@media (max-width: 768px) {
+  .user_profile img {
+    width: 12vw;
+    height: 12vw; 
+    max-width: 40px; 
+    max-height: 40px; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .user_profile img {
+    width: 15vw; 
+    height: 15vw;
+    max-width: 30px; 
+    max-height: 30px; 
+  }
+}
+
+
 .navbar-top {
   display: flex;
   justify-content: space-between;
@@ -442,11 +468,12 @@ body.nav-active { overflow: hidden; }
 
 .hero-bg { display: none; }
 
-.hero { padding-block-start: calc(var(--section-padding) + 160px); }
+.hero { padding-block-start: calc(var(--section-padding) + 160px); margin-bottom: 5rem; }
 
 .hero .container {
-  display: grid;
+  display: flex;
   gap: 50px;
+  
 }
 
 .hero-subtitle {
@@ -458,19 +485,7 @@ body.nav-active { overflow: hidden; }
 
 .hero .hero-text { margin-block-end: 40px; }
 
-.hero .input-wrapper:hover { box-shadow: var(--shadow-2); }
 
-.hero .input-wrapper {
-  position: relative;
-  padding: 10px;
-  padding-inline-start: 20px;
-  background-color: var(--bg-prussian-blue);
-  border-radius: var(--radius-6);
-  border: 1px solid var(--bg-carolina-blue);
-  display: flex;
-  justify-items: flex-end;
-  transition: var(--transition-1);
-}
 
 .hero .input-field { padding-inline-end: 5px; }
 
@@ -856,7 +871,9 @@ body.nav-active { overflow: hidden; }
 \*-----------------------------------*/
 
 .footer {
+  margin-top: 12rem;
   padding-inline: 20px;
+  padding: 30px 0px;
   border-radius: var(--radius-48);
   color: var(--text-wild-blue-yonder);
   margin-block-end: 24px;
@@ -864,7 +881,8 @@ body.nav-active { overflow: hidden; }
 
 .footer-top {
   display: grid;
-  gap: 20px;
+  gap: 140px;
+  padding-inline: 60px;
 }
 
 .footer-brand .footer-text { font-size: var(--fontSize-6); }
@@ -1086,7 +1104,6 @@ body.nav-active { overflow: hidden; }
    * FEATURE
    */
 
-  .feature { position: relative; }
 
   .feature-bg {
     display: block;
