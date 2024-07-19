@@ -5,7 +5,7 @@ const Header = () => {
     <>
       <header className="header" data-header>
         <div className="container">
-          <a href="#" className="logo">
+          <a href="/home" className="logo">
             <h1>Epistle</h1>
           </a>
 
@@ -32,7 +32,7 @@ const Header = () => {
             <ul className="navbar-list">
               <li>
                 <a
-                  href="#home"
+                  href="/home"
                   className="navbar-link hover-1"
                   data-nav-toggler
                 >

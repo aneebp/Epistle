@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const BlogPost = () => {
   return (
     <>
@@ -364,11 +365,11 @@ const BlogPost = () => {
             </li>
           </ul>
 
-          <a href="#" className="btn btn-secondary">
+          <Link to="/blogposts" className="btn btn-secondary">
             <span className="span">Show More Posts</span>
 
             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-          </a>
+          </Link>
         </div>
 
         <img

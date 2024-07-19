@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
+import Allblogposts from "./pages/Allblogposts";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
                 <Home></Home>
               </ProtectedRoute>
             }
+          ></Route>
+          <Route
+            path="/blogposts"
+            element={<Allblogposts></Allblogposts>}
           ></Route>
         </Routes>
       </BrowserRouter>
