@@ -8,7 +8,11 @@ const Allblogposts = () => {
       <Header></Header>
       <section className="section feature" aria-label="feature" id="featured">
         <div style={{ marginTop: 100 }} className="container">
-          <p className="section-text"></p>
+          <h2 className="headline headline-2 section-title">
+            <span className="span" style={{ marginBottom: 50 }}>
+              Discover Inspiring Stories
+            </span>
+          </h2>
 
           <ul className="feature-list">
             <li>

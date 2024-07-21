@@ -1,5 +1,6 @@
 import React from "react";
 import {} from "react-ionicons";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <>
@@ -20,14 +21,16 @@ const Hero = () => {
               discover the stories that resonate with you.
             </p>
             <div class="input-wrapper">
-              <button class="btn btn-primary">
-                <span class="span">Start Writing</span>
+              <Link to="/startwriting">
+                <button class="btn btn-primary">
+                  <span class="span">Start Writing</span>
 
-                <ion-icon
-                  name="arrow-forward-outline"
-                  aria-hidden="true"
-                ></ion-icon>
-              </button>
+                  <ion-icon
+                    name="arrow-forward-outline"
+                    aria-hidden="true"
+                  ></ion-icon>
+                </button>
+              </Link>
             </div>
           </div>
 

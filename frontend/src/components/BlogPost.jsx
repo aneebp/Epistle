@@ -12,7 +12,7 @@ const BlogPost = () => {
           <p className="section-text">
             Explore Our Latest Insights and Stories
           </p>
-
+          
           <ul className="feature-list">
             <li>
               <div className="card feature-card">

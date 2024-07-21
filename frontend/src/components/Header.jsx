@@ -66,7 +66,7 @@ const Header = () => {
                   className="navbar-link hover-1"
                   data-nav-toggler
                 >
-                  Popular Tags
+                  Start Writing
                 </a>
               </li>
 
@@ -80,7 +80,7 @@ const Header = () => {
             <div className="navbar-bottom">
               <div className="profile-card">
                 <img
-                  src="./assets/images/author-1.png"
+                  src="./src/assets/images/author-1.png"
                   width="48"
                   height="48"
                   alt="Steven"

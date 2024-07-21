@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.start-writing-container {
+  display: grid;
+  grid-template-rows: 60% 40%;
+  height: 100vh;
+}
+
+.image-upload-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.image-upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.start-writing-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.title-input {
+  width: 100%;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.description-input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 150px;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.publish-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}

@@ -6,11 +6,15 @@ import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import Allblogposts from "./pages/Allblogposts";
+import ScrollToTop from "./components/ScrollToTop";
+import Blogdetails from "./pages/Blogdetails";
+import Startwriting from "./pages/Startwriting";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop></ScrollToTop>
         <Routes>
           <Route path="/" element={<Login></Login>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
@@ -26,6 +30,14 @@ function App() {
           <Route
             path="/blogposts"
             element={<Allblogposts></Allblogposts>}
+          ></Route>
+          <Route
+            path="/blogdetail"
+            element={<Blogdetails></Blogdetails>}
+          ></Route>
+          <Route
+            path="/startwriting"
+            element={<Startwriting></Startwriting>}
           ></Route>
         </Routes>
       </BrowserRouter>
