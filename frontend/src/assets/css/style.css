@@ -473,6 +473,7 @@ body.nav-active { overflow: hidden; }
 .hero .container {
   display: flex;
   gap: 50px;
+  text-align: start;
   
 }
 
@@ -529,6 +530,7 @@ body.nav-active { overflow: hidden; }
 .topic-card {
   padding: 24px;
   border-radius: var(--radius-8);
+  text-align: start;
 }
 
 .topic-card .card-content { margin-block-end: 15px; }
@@ -619,6 +621,7 @@ body.nav-active { overflow: hidden; }
   flex-wrap: wrap;
   gap: 30px;
   margin-bottom: 5rem;
+  text-align: start;
 }
 
 .feature-card {
@@ -878,6 +881,7 @@ body.nav-active { overflow: hidden; }
   border-radius: var(--radius-48);
   color: var(--text-wild-blue-yonder);
   margin-block-end: 24px;
+  text-align: start;
 }
 
 .footer-top {

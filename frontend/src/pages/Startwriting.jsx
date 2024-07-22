@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/writing.css";
+import { IoIosArrowBack } from "react-icons/io";
 
 const StartWriting = () => {
   const [title, setTitle] = useState("");
@@ -20,6 +21,9 @@ const StartWriting = () => {
 
   return (
     <div className="start-writing-container">
+      <button className="back-button" onClick={() => window.history.back()}>
+        <IoIosArrowBack />
+      </button>
       <div className="image-upload-section">
         {image ? (
           <img src={image} alt="Uploaded" className="uploaded-image" />
@@ -39,14 +43,14 @@ const StartWriting = () => {
       <form className="start-writing-form" onSubmit={handlePublish}>
         <input
           type="text"
-          placeholder="Blog title..."
+          placeholder="Blog Title..."
           className="title-input"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
         />
         <textarea
-          placeholder="Start writing here..."
+          placeholder="Start Writing Here..."
           className="description-input"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -56,7 +60,6 @@ const StartWriting = () => {
           <button type="submit" className="publish-button">
             Publish
           </button>
-          
         </div>
       </form>
     </div>

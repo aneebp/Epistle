@@ -1,0 +1,143 @@
+:root {
+    --bg-oxford-blue: hsla(222, 44%, 13%, 1);
+    --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+    --text-color: #fff;
+    --button-bg: #1e90ff;
+    --button-bg-hover: #1c86ee;
+  }
+  
+  body {
+    background-color: var(--bg-oxford-blue);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #ffff;
+    font-size: 5rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 400ms ease;
+  }
+  
+  .back-button:hover {
+    font-size: 5.5rem;
+  }
+  
+  
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--bg-oxford-blue);
+    color: var(--text-color);
+    height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+    margin-top: 10rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--text-color);
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .profile-name {
+    font-size: 4rem;
+    margin: 0;
+  }
+  .social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .social-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-button:hover img {
+    transform: scale(1.3);
+  }
+  
+  .follow-button {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  
+  .follow-button:hover {
+    background-color: var(--button-bg-hover);
+    transform: scale(1.1);
+  }
+  
+  .profile-about {
+    margin-top: 2rem;
+    text-align: center;
+    max-width: 600px;
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .profile-about p {
+    font-size:1.5rem;
+    line-height: 1.5;
+  }
+  

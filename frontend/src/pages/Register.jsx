@@ -47,7 +47,7 @@ const Register = () => {
           <input
             value={full_name}
             onChange={(e) => setfull_name(e.target.value)}
-            required=""
+            required
             placeholder=""
             type="text"
             className="input"
@@ -59,7 +59,7 @@ const Register = () => {
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required=""
+            required
             placeholder=""
             type="email"
             className="input"
@@ -71,7 +71,7 @@ const Register = () => {
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required=""
+            required
             placeholder=""
             type="password"
             className="input"
@@ -82,7 +82,7 @@ const Register = () => {
           <input
             value={password2}
             onChange={(e) => setpassword2(e.target.value)}
-            required=""
+            required
             placeholder=""
             type="password"
             className="input"

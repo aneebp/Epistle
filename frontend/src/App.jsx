@@ -9,6 +9,7 @@ import Allblogposts from "./pages/Allblogposts";
 import ScrollToTop from "./components/ScrollToTop";
 import Blogdetails from "./pages/Blogdetails";
 import Startwriting from "./pages/Startwriting";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             path="/startwriting"
             element={<Startwriting></Startwriting>}
           ></Route>
+          <Route path="/profile" element={<Profile></Profile>}></Route>
         </Routes>
       </BrowserRouter>
     </>

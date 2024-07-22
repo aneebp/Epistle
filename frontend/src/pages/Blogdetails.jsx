@@ -1,19 +1,26 @@
 import React from "react";
 import "../styles/blogdetail.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { FaHeart } from "react-icons/fa6";
+import { FaComment } from "react-icons/fa";
+import { IoIosBookmark } from "react-icons/io";
+import Header from "../components/Header";
+import BlogPost from "../components/BlogPost";
+import Footer from "../components/Footer";
 
 const Blogdetails = () => {
   return (
     <>
+      <Header></Header>
       <div className="blog-detail">
         {/* Back Button */}
         <button className="back-button" onClick={() => window.history.back()}>
-          &larr; Back
+          <IoIosArrowBack />
         </button>
 
-        {/* User-uploaded Image */}
         <div className="blog-header">
           <img
-            src="./src/assets/images/featured-5.png" // Replace with actual image source
+            src="./src/assets/images/featured-5.png"
             alt="Blog Header"
             className="blog-header-image"
           />
@@ -24,7 +31,7 @@ const Blogdetails = () => {
           <div className="container">
             <h2 className="headline headline-2 section-title">
               <span className="span">
-                Top 10 AI Websitses to Improve Your Life
+                Top 10 AI Websites to Improve Your Life
               </span>
             </h2>
 
@@ -58,8 +65,15 @@ const Blogdetails = () => {
             </p>
 
             <div className="button-group">
-              <button className="comment-button">Comment</button>
-              <button className="bookmark-button">Bookmark</button>
+              <button className="like-button">
+                <FaHeart></FaHeart>
+              </button>
+              <button className="comment-button">
+                <FaComment></FaComment>
+              </button>
+              <button className="bookmark-button">
+                <IoIosBookmark />
+              </button>
             </div>
           </div>
 
@@ -73,6 +87,8 @@ const Blogdetails = () => {
           />
         </section>
       </div>
+      <BlogPost></BlogPost>
+      <Footer></Footer>
     </>
   );
 };

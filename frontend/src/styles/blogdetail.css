@@ -8,23 +8,22 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    margin-top: 24rem;
   }
   
   .back-button {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    color: #ffff;
+    font-size: 5rem;
     cursor: pointer;
     z-index: 10;
+    transition: all 400ms ease;
   }
   
   .back-button:hover {
-    background-color: #0056b3;
+    font-size: 5.5rem;
   }
   
   .blog-header {
@@ -43,7 +42,8 @@
     height: 50%;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto;
+    margin-top: 5rem;
+
   }
   
   .feature {
@@ -59,8 +59,9 @@
   }
   
   .headline-2 {
-    font-size: 2rem;
+    font-size: 4rem;
     margin-bottom: 10px;
+    text-align: left;
   }
   
   .section-title .span {
@@ -70,31 +71,43 @@
   .section-text {
     color: gray;
     margin-bottom: 20px;
+    text-align: left;
+    font-size: 1.5rem;
+    
   }
   
   .blog-description {
     margin: 20px 0;
     line-height: 1.6;
+    text-align: left;
+    font-size: 2rem;
   }
   
   .button-group {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     gap: 10px;
     margin-top: 20px;
+    margin-bottom: 20rem;
   }
   
-  .comment-button, .bookmark-button {
-    background-color: #007bff;
+  .comment-button, .bookmark-button, .like-button {
+    
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
+    align-items: start;
+    transition: all 400ms ease;
   }
   
-  .comment-button:hover, .bookmark-button:hover {
-    background-color: #0056b3;
+  .comment-button:hover, .bookmark-button:hover, .like-button:hover {
+    background-color: #151747;
+    transform: translateX(-12px);
+
   }
+
+
   
