@@ -3,6 +3,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import Profile,User,Category,Post,Comment,Bookmark,Notification
+from django.utils.dateformat import format
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
@@ -84,9 +85,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    profile = ProfileSerializer(read_only=True)
+    formatted_date = serializers.SerializerMethodField()
     class Meta: 
         model = Post
-        fields = '__all__'
+        fields = ["title", "image", "description", "tags", "category", "status","user","profile","formatted_date"]
 
     def __init__(self, *args, **kwargs):
         super(PostSerializer,self).__init__( *args, **kwargs)
@@ -95,6 +99,9 @@ class PostSerializer(serializers.ModelSerializer):
             self.Meta.depth = 0
         else:
             self.Meta.depth = 1
+    def get_formatted_date(self, obj):
+        return format(obj.date, 'd M Y')
+
 
 
 class BookmarkSerializer(serializers.ModelSerializer):

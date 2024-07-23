@@ -71,13 +71,14 @@ class PostCategoryView(generics.ListAPIView):
         return posts
 
 
-class PostListView(generics.ListAPIView):
+class PostListView(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = api_serializer.PostSerializer
 
     def get_queryset(self):
-        return api_models.Post.objects.filter(status='Active')
-    
+        return api_models.Post.objects.filter(status='Active').select_related('user','profile')
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, profile=self.request.user.profile)
 
 class PostDetailsView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]

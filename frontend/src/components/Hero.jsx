@@ -20,10 +20,10 @@ const Hero = () => {
               passion and expand your horizons. Join our community today and
               discover the stories that resonate with you.
             </p>
-            <div class="input-wrapper">
+            <div className="input-wrapper">
               <Link to="/startwriting">
-                <button class="btn btn-primary">
-                  <span class="span">Start Writing</span>
+                <button className="btn btn-primary">
+                  <span className="span">Start Writing</span>
 
                   <ion-icon
                     name="arrow-forward-outline"

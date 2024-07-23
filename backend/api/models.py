@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.utils.html import mark_safe
 from django.utils.text import slugify
 
+
 from shortuuid.django_fields import ShortUUIDField
 import shortuuid
 
