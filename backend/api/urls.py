@@ -10,6 +10,7 @@ urlpatterns = [
     path('category/list/', api_views.CategoryView.as_view(),name='category'),
     path('category/posts/<category_slug>',api_views.PostCategoryView.as_view(),name="post_by_category"),
     path('posts/',api_views.PostListView.as_view(),name="posts"),
+    path('posts/latest-post/',api_views.LatestPosts.as_view(),name="posts"),
     path('post/details/<post_slug>',api_views.PostDetailsView.as_view(),name='posts_details'),
     path('post/like',api_views.LikeView.as_view(),name='post_like'),
     path('post/comment',api_views.CommentView.as_view(),name='comment'),

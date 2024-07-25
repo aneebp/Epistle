@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BPost from "./BPost";
 import api from "../api";
+import Spinner from "./Spinner";
 const BlogPost = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchposts = async () => {
       try {
-        const res = await api.get("api/posts/");
+        const res = await api.get("api/posts/latest-post/");
         setPosts(res.data);
       } catch (error) {
         console.log("error occured during fetch the post", error);
@@ -29,11 +30,15 @@ const BlogPost = () => {
           <p className="section-text">
             Explore Our Latest Insights and Stories
           </p>
-          <ul className="feature-list">
-            {posts.map((post) => (
-              <BPost key={post.id} post={post}></BPost>
-            ))}
-          </ul>
+          {loading ? (
+            <Spinner loading={loading}></Spinner>
+          ) : (
+            <ul className="feature-list">
+              {posts.map((post) => (
+                <BPost key={post.id} post={post}></BPost>
+              ))}
+            </ul>
+          )}
 
           <Link to="/blogposts" className="btn btn-secondary">
             <span className="span">Show More Posts</span>

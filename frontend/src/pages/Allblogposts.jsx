@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BPost from "../components/BPost";
+import api from "../api";
+import Spinner from "../components/Spinner";
 
 const Allblogposts = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchposts = async () => {
+      try {
+        const res = await api.get("api/posts/");
+        setPosts(res.data);
+      } catch (error) {
+        console.log("error occured during fetch the post", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchposts();
+  }, []);
   return (
     <>
       <Header></Header>
@@ -15,8 +32,15 @@ const Allblogposts = () => {
             </span>
           </h2>
 
-          <BPost />
-          <BPost />
+          {loading ? (
+            <Spinner loading={loading}></Spinner>
+          ) : (
+            <ul className="feature-list">
+              {posts.map((post) => (
+                <BPost key={post.id} post={post}></BPost>
+              ))}
+            </ul>
+          )}
         </div>
 
         <img

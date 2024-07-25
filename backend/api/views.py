@@ -76,9 +76,21 @@ class PostListView(generics.ListCreateAPIView):
     serializer_class = api_serializer.PostSerializer
 
     def get_queryset(self):
-        return api_models.Post.objects.filter(status='Active').select_related('user','profile')
+        return api_models.Post.objects.filter(status='Active').select_related('user','profile').order_by('-date')
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, profile=self.request.user.profile)
+
+
+#latest 5 post
+class LatestPosts(generics.ListCreateAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = api_serializer.PostSerializer
+
+    def get_queryset(self):
+        return api_models.Post.objects.filter(status='Active').select_related('user','profile').order_by('-date')[:5]
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, profile=self.request.user.profile)
+
 
 class PostDetailsView(generics.RetrieveAPIView):
     permission_classes = [AllowAny]

@@ -23,19 +23,11 @@ const BPost = ({ post }) => {
           <div className="card-content">
             <div className="card-wrapper">
               <div className="card-tag">
-                <a href="#" className="span hover-2">
-                  #{post.tags}
-                </a>
-
-                <a href="#" className="span hover-2">
-                  #Lifestyle
-                </a>
-              </div>
-
-              <div className="wrapper">
-                <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                <span className="span">3 mins read</span>
+                {post.tags.split(",").map((tag, index) => (
+                  <a key={index} href="#" className="tags-a span hover-2">
+                    #{tag.trim()}
+                  </a>
+                ))}
               </div>
             </div>
 
