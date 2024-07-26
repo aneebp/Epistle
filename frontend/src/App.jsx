@@ -33,7 +33,7 @@ function App() {
             element={<Allblogposts></Allblogposts>}
           ></Route>
           <Route
-            path="/blogdetail"
+            path="/blogdetail/:slug"
             element={<Blogdetails></Blogdetails>}
           ></Route>
           <Route

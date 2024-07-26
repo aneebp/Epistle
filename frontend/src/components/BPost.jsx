@@ -10,14 +10,16 @@ const BPost = ({ post }) => {
             className="card-banner img-holder"
             style={{ "--width": 1602, "--height": 903 }}
           >
-            <img
-              src={post.image}
-              width="1602"
-              height="903"
-              loading="lazy"
-              alt={post.title}
-              className="img-cover"
-            />
+            <Link to={`/blogdetail/${post.slug}`}>
+              <img
+                src={post.image}
+                width="1602"
+                height="903"
+                loading="lazy"
+                alt={post.title}
+                className="img-cover"
+              />
+            </Link>
           </figure>
 
           <div className="card-content">
@@ -32,9 +34,12 @@ const BPost = ({ post }) => {
             </div>
 
             <h3 className="headline headline-3">
-              <a href="#" className="card-title hover-2">
+              <Link
+                to={`/blogdetail/${post.slug}`}
+                className="card-title hover-2"
+              >
                 {post.title}
-              </a>
+              </Link>
             </h3>
 
             <div className="card-wrapper">
@@ -57,7 +62,7 @@ const BPost = ({ post }) => {
                 </div>
               </div>
 
-              <Link to="/blogdetail" className="card-btn">
+              <Link to={`/blogdetail/${post.slug}`} className="card-btn">
                 Read more
               </Link>
             </div>

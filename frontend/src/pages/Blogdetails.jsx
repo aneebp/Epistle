@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/blogdetail.css";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
@@ -7,88 +7,95 @@ import { IoIosBookmark } from "react-icons/io";
 import Header from "../components/Header";
 import BlogPost from "../components/BlogPost";
 import Footer from "../components/Footer";
-
+import api from "../api";
+import { Link, useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
 const Blogdetails = () => {
+  const [postDetails, setPostDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const { slug } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchdata = await api.get(`api/post/details/${slug}`);
+        setPostDetails(fetchdata.data);
+      } catch (error) {
+        console.log("error during fetching post details", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [slug]);
   return (
     <>
-      <Header></Header>
-      <div className="blog-detail">
-        {/* Back Button */}
-        <button className="back-button" onClick={() => window.history.back()}>
-          <IoIosArrowBack />
-        </button>
-
-        <div className="blog-header">
-          <img
-            src="./src/assets/images/featured-5.png"
-            alt="Blog Header"
-            className="blog-header-image"
-          />
-        </div>
-
-        {/* Blog Content Section */}
-        <section className="section feature" aria-label="feature" id="featured">
-          <div className="container">
-            <h2 className="headline headline-2 section-title">
-              <span className="span">
-                Top 10 AI Websites to Improve Your Life
-              </span>
-            </h2>
-
-            <p className="section-text">Published at - 12 Aug 2032</p>
-
-            <p className="blog-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores beatae expedita facere? Quasi suscipit, eligendi vero
-              officia explicabo inventore optio tempore esse! Ratione ipsam
-              expedita soluta nam provident unde ducimus amet modi ipsum
-              repudiandae perspiciatis distinctio et reiciendis, nisi facere
-              reprehenderit accusantium! Deleniti enim accusamus tempora
-              corporis ut nihil eos, impedit consequuntur, tempore error
-              aspernatur est beatae consectetur! Est ut, optio error perferendis
-              alias totam ea, at praesentium blanditiis earum velit dolorem quae
-              esse ducimus nam, delectus ullam quod. Est nisi distinctio saepe
-              quos et explicabo totam quod esse natus delectus harum, dolores
-              asperiores, quibusdam dolorum cum tenetur consequatur voluptates
-              ut corrupti eius nesciunt ad nihil. Fuga quis officia, voluptatum
-              sed quo nemo ipsam minus in recusandae. Alias quia tenetur
-              accusantium voluptates adipisci obcaecati eligendi nesciunt
-              voluptatibus soluta molestiae omnis nam dolorem aliquam nobis
-              minima, accusamus architecto rerum aut expedita libero
-              repudiandae? Fugiat, explicabo itaque consequatur ad aut sed
-              corrupti perspiciatis sapiente sunt, unde voluptatum perferendis
-              optio commodi dolores expedita sint pariatur similique in? Culpa,
-              nostrum repellat aut placeat neque sapiente laborum suscipit quasi
-              assumenda quibusdam ad ex aperiam optio ab veniam? Similique
-              dolorum, sint quis esse odio officia maxime, sunt harum deserunt a
-              commodi sapiente ut dicta, reiciendis suscipit.
-            </p>
-
-            <div className="button-group">
-              <button className="like-button">
-                <FaHeart></FaHeart>
+      {loading ? (
+        <Spinner loading={loading}></Spinner>
+      ) : (
+        <>
+          <div className="blog-detail">
+            {/* Back Button */}
+            <Link to="/blogposts">
+              <button className="back-button">
+                <IoIosArrowBack />
               </button>
-              <button className="comment-button">
-                <FaComment></FaComment>
-              </button>
-              <button className="bookmark-button">
-                <IoIosBookmark />
-              </button>
+            </Link>
+
+            <div className="blog-header">
+              <img
+                src={postDetails.image}
+                alt="Blog Header"
+                className="blog-header-image"
+              />
             </div>
-          </div>
 
-          <img
-            src="./src/assets/images/shadow-3.svg"
-            width="500"
-            height="1500"
-            loading="lazy"
-            alt="Background Decoration"
-            className="feature-bg"
-          />
-        </section>
-      </div>
-      <BlogPost></BlogPost>
-      <Footer></Footer>
+            {/* Blog Content Section */}
+            <section
+              className="section feature"
+              aria-label="feature"
+              id="featured"
+            >
+              <div className="container">
+                <h2 className="headline headline-2 section-title">
+                  <span className="span">{postDetails.title}</span>
+                </h2>
+
+                <p className="section-text">
+                  Published at - {postDetails.formatted_date}
+                </p>
+
+                <p className="blog-description">{postDetails.description}</p>
+
+                <div className="button-group">
+                  <button className="like-button">
+                    <FaHeart></FaHeart>
+                  </button>
+                  <button className="comment-button">
+                    <FaComment></FaComment>
+                  </button>
+                  <button className="bookmark-button">
+                    <IoIosBookmark />
+                  </button>
+                </div>
+              </div>
+
+              <img
+                src="./src/assets/images/shadow-3.svg"
+                width="500"
+                height="1500"
+                loading="lazy"
+                alt="Background Decoration"
+                className="feature-bg"
+              />
+            </section>
+          </div>
+          <div className="blog-posts">
+            <BlogPost />
+          </div>
+        </>
+      )}
     </>
   );
 };

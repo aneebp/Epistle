@@ -97,8 +97,8 @@ class PostDetailsView(generics.RetrieveAPIView):
     serializer_class = api_serializer.PostSerializer
 
     def get_object(self):
-        post_slug = self.kwargs['post_slug']
-        posts = api_models.Post.objects.get(slug=post_slug, status='Active')
+        slug = self.kwargs['slug']
+        posts = api_models.Post.objects.get(slug=slug, status='Active')
         posts.view += 1
         posts.save()
         return posts

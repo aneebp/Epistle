@@ -90,7 +90,7 @@ class PostSerializer(serializers.ModelSerializer):
     formatted_date = serializers.SerializerMethodField()
     class Meta: 
         model = Post
-        fields = ["title", "image", "description", "tags", "category", "status","user","profile","formatted_date"]
+        fields = ["title", "image", "description", "tags", "category", "status","slug","user","profile","formatted_date"]
 
     def __init__(self, *args, **kwargs):
         super(PostSerializer,self).__init__( *args, **kwargs)
