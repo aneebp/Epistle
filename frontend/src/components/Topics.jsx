@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import api from "../api";
+import { Link } from "react-router-dom";
 
 const Topics = () => {
   const [currentSlidePos, setCurrentSlidePos] = useState(0);
@@ -6,6 +8,8 @@ const Topics = () => {
   const [totalSlidableItems, setTotalSlidableItems] = useState(0);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
+  const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const sliderContainerRef = useRef(null);
   const sliderRef = useRef(null);
@@ -67,6 +71,20 @@ const Topics = () => {
     moveSliderItem();
   }, [currentSlidePos, totalSlidableItems]);
 
+  useEffect(() => {
+    const fetchcategory = async () => {
+      try {
+        const res = await api.get("api/category/list/");
+        setCategory(res.data);
+      } catch (error) {
+        console.log("error during fetching category", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchcategory();
+  }, []);
+
   return (
     <>
       <section className="topics" id="topics" aria-labelledby="topic-label">
@@ -114,125 +132,36 @@ const Topics = () => {
                 data-slider-container
                 ref={sliderContainerRef}
               >
-                <li className="slider-item">
-                  <a href="#" className="slider-card">
-                    <figure
-                      className="slider-banner img-holder"
-                      style={{ "--width": 507, "--height": 618 }}
+                {category.map((cat) => (
+                  <li key={cat.id} className="slider-item">
+                    <Link
+                      to={`/topic/post/${cat.slug}`}
+                      className="slider-card"
                     >
-                      <img
-                        src="./src/assets/images/topic-1.png"
-                        width="507"
-                        height="618"
-                        loading="lazy"
-                        alt="Sport"
-                        className="img-cover"
-                      />
-                    </figure>
+                      <figure
+                        className="slider-banner img-holder"
+                        style={{ "--width": 507, "--height": 618 }}
+                      >
+                        <img
+                          src={cat.image}
+                          width="507"
+                          height="618"
+                          loading="lazy"
+                          alt="Sport"
+                          className="img-cover"
+                        />
+                      </figure>
 
-                    <div className="slider-content">
-                      <span className="slider-title">Sport</span>
+                      <div className="slider-content">
+                        <span className="slider-title">{cat.title}</span>
 
-                      <p className="slider-subtitle">38 Articles</p>
-                    </div>
-                  </a>
-                </li>
-
-                <li className="slider-item">
-                  <a href="#" className="slider-card">
-                    <figure
-                      className="slider-banner img-holder"
-                      style={{ "--width": 507, "--height": 618 }}
-                    >
-                      <img
-                        src="./src/assets/images/topic-2.png"
-                        width="507"
-                        height="618"
-                        loading="lazy"
-                        alt="Travel"
-                        className="img-cover"
-                      />
-                    </figure>
-
-                    <div className="slider-content">
-                      <span className="slider-title">Travel</span>
-
-                      <p className="slider-subtitle">63 Articles</p>
-                    </div>
-                  </a>
-                </li>
-
-                <li className="slider-item">
-                  <a href="#" className="slider-card">
-                    <figure
-                      className="slider-banner img-holder"
-                      style={{ "--width": 507, "--height": 618 }}
-                    >
-                      <img
-                        src="./src/assets/images/topic-3.png"
-                        width="507"
-                        height="618"
-                        loading="lazy"
-                        alt="Design"
-                        className="img-cover"
-                      />
-                    </figure>
-
-                    <div className="slider-content">
-                      <span className="slider-title">Design</span>
-
-                      <p className="slider-subtitle">78 Articles</p>
-                    </div>
-                  </a>
-                </li>
-
-                <li className="slider-item">
-                  <a href="#" className="slider-card">
-                    <figure
-                      className="slider-banner img-holder"
-                      style={{ "--width": 507, "--height": 618 }}
-                    >
-                      <img
-                        src="./src/assets/images/topic-4.png"
-                        width="507"
-                        height="618"
-                        loading="lazy"
-                        alt="Movie"
-                        className="img-cover"
-                      />
-                    </figure>
-
-                    <div className="slider-content">
-                      <span className="slider-title">Movie</span>
-
-                      <p className="slider-subtitle">125 Articles</p>
-                    </div>
-                  </a>
-                </li>
-
-                <li className="slider-item">
-                  <a href="#" className="slider-card">
-                    <figure
-                      className="slider-banner img-holder"
-                      style={{ "--width": 507, "--height": 618 }}
-                    >
-                      <img
-                        src="./src/assets/images/topic-5.png"
-                        width="507"
-                        height="618"
-                        loading="lazy"
-                        alt="Lifestyle"
-                        className="img-cover"
-                      />
-                    </figure>
-
-                    <div className="slider-content">
-                      <span className="slider-title">Lifestyle</span>
-
-                      <p className="slider-subtitle">78 Articles</p>
-                    </div>
-                  </a>
-                </li>
+                        <p className="slider-subtitle">
+                          {cat.post_count} Articles
+                        </p>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

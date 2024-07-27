@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Blogdetails from "./pages/Blogdetails";
 import Startwriting from "./pages/Startwriting";
 import Profile from "./pages/Profile";
+import TopicBlog from "./pages/TopicBlog";
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
             element={<Startwriting></Startwriting>}
           ></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route
+            path="/topic/post/:slug"
+            element={<TopicBlog></TopicBlog>}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HashLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 const override = {
   display: "block",
@@ -10,7 +10,7 @@ function Spinner() {
   const [loading, setLoading] = useState(true);
   return (
     <>
-      <HashLoader
+      <ClipLoader
         color="blue"
         loading={loading}
         cssOverride={override}
