@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../api";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const res = await api.get("api/user/profile/");
+        setUser(res.data);
+      } catch (error) {
+        console.log("error during the userfetching", error);
+      }
+    };
+    fetchdata();
+  }, []);
+
   return (
     <>
       <header className="header" data-header>
         <div className="container">
-          <a href="/home" className="logo">
+          <a href="/" className="logo">
             <h1>Epistle</h1>
           </a>
 
@@ -32,11 +46,7 @@ const Header = () => {
 
             <ul className="navbar-list">
               <li>
-                <a
-                  href="/home"
-                  className="navbar-link hover-1"
-                  data-nav-toggler
-                >
+                <a href="/" className="navbar-link hover-1" data-nav-toggler>
                   Home
                 </a>
               </li>
@@ -71,23 +81,31 @@ const Header = () => {
                 </Link>
               </li>
 
-              {/* <li>
+              <li>
                 <a href="#" className="navbar-link hover-1" data-nav-toggler>
                   Contact
                 </a>
-              </li> */}
+              </li>
             </ul>
           </nav>
-          {/* ////// If user does not login////// */}
-          {/* <a href="#" className="btn btn-primary">
-            Login
-          </a> */}
-          {/* ///////If user is login */}
-          <Link to="/profile">
-            <div className="user_profile">
-              <img src="./src/assets/images/author-1.png" alt="" />
-            </div>
-          </Link>
+          {user ? (
+            <Link to={`/profile/${user.id}`}>
+              <div className="user_profile">
+                <img
+                  src={
+                    user
+                      ? user.profile_image
+                      : "./src/assets/images/default-profile.png"
+                  }
+                  alt=""
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary">
+              Login
+            </Link>
+          )}
         </div>
       </header>
     </>

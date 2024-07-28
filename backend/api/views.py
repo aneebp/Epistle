@@ -12,7 +12,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import generics
+from rest_framework import generics , permissions
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -38,6 +38,18 @@ class RegisterView(generics.CreateAPIView):
     queryset = api_models.User.objects.all()
     permission_classes = (AllowAny,)  
     serializer_class = api_serializer.RegisterSerializer
+
+#for the authenicated user
+class UserProfileView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = api_serializer.UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        serializer= self.get_serializer(user)
+        return Response(serializer.data)
+
+
 
 
 class ProfileView(generics.RetrieveUpdateAPIView):

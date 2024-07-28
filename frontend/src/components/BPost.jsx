@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const BPost = ({ post }) => {
   return (
     <>
-      <li>
+      <li key={post.id}>
         <div className="card feature-card">
           <figure
             className="card-banner img-holder"
@@ -43,24 +43,26 @@ const BPost = ({ post }) => {
             </h3>
 
             <div className="card-wrapper">
-              <div className="profile-card">
-                {post.profile && post.profile.image && (
-                  <img
-                    src={post.profile.image}
-                    width="48"
-                    height="48"
-                    loading="lazy"
-                    alt="Joseph"
-                    className="profile-banner"
-                  />
-                )}
+              <Link to={`/profile/${post.user.id}`}>
+                <div className="profile-card">
+                  {post.profile && post.profile.image && (
+                    <img
+                      src={post.profile.image}
+                      width="48"
+                      height="48"
+                      loading="lazy"
+                      alt="Joseph"
+                      className="profile-banner"
+                    />
+                  )}
 
-                <div>
-                  <p className="card-title">{post.user.full_name}</p>
+                  <div>
+                    <p className="card-title">{post.user.full_name}</p>
 
-                  <p className="card-subtitle">{post.formatted_date}</p>
+                    <p className="card-subtitle">{post.formatted_date}</p>
+                  </div>
                 </div>
-              </div>
+              </Link>
 
               <Link to={`/blogdetail/${post.slug}`} className="card-btn">
                 Read more

@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -12,23 +12,20 @@ import Startwriting from "./pages/Startwriting";
 import Profile from "./pages/Profile";
 import TopicBlog from "./pages/TopicBlog";
 
+function Logout() {
+  localStorage.clear();
+  return <Navigate to="/"></Navigate>;
+}
 function App() {
   return (
     <>
       <BrowserRouter>
         <ScrollToTop></ScrollToTop>
         <Routes>
-          <Route path="/" element={<Login></Login>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/logout" element={<Logout></Logout>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <ToastContainer></ToastContainer>
-                <Home></Home>
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="/" element={<Home></Home>}></Route>
           <Route
             path="/blogposts"
             element={<Allblogposts></Allblogposts>}
@@ -41,7 +38,14 @@ function App() {
             path="/startwriting"
             element={<Startwriting></Startwriting>}
           ></Route>
-          <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route
+            path="/profile/:id"
+            element={
+              <ProtectedRoute>
+                <Profile></Profile>
+              </ProtectedRoute>
+            }
+          ></Route>
           <Route
             path="/topic/post/:slug"
             element={<TopicBlog></TopicBlog>}

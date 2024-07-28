@@ -25,7 +25,6 @@ const TopicBlog = () => {
     };
     fetchpost();
   }, [slug]);
-  console.log("topic based post", posts);
   if (posts == 0) {
     return (
       <>
@@ -55,7 +54,6 @@ const TopicBlog = () => {
       </>
     );
   }
-  console.log(posts);
   return (
     <>
       <Header></Header>

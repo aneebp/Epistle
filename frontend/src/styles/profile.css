@@ -66,6 +66,7 @@
     border-radius: 50%;
     border: 3px solid var(--text-color);
     animation: bounce 2s infinite;
+    object-fit: cover;
   }
   
   @keyframes bounce {
@@ -123,6 +124,21 @@
     text-align: center;
     max-width: 600px;
     animation: slideIn 1s ease-in-out;
+  }
+  .logout-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #d32f2f;
   }
   
   @keyframes slideIn {

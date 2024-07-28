@@ -58,7 +58,7 @@ const StartWriting = () => {
         },
       });
 
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.log(error.response.data); // Log the error details from the server
       setError(

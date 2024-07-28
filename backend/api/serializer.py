@@ -42,9 +42,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 class UserSerializer(serializers.ModelSerializer):
+    profile_image = serializers.ImageField(source='profile.image', read_only=True)
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ["id","username","email","full_name","profile_image"]
 
 
 class PasswordResetSerializer(serializers.Serializer):

@@ -20,7 +20,7 @@ const Login = () => {
       const res = await api.post("api/user/token/", { email, password });
       localStorage.setItem(ACCESS_TOKEN, res.data.access);
       localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setError("Unauthorized: Incorrect username or password.");
