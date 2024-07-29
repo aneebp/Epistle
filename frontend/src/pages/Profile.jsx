@@ -38,56 +38,48 @@ const Profile = () => {
   if (!userData) {
     return <h2>No User </h2>;
   }
+  console.log(userData);
   return (
-    <div className="profile-container">
-      <button className="back-button" onClick={() => window.history.back()}>
-        <IoIosArrowBack />
-      </button>
-      <div className="profile-header">
-        <img
-          src={
-            userData
-              ? userData.image
-              : "./src/assets/images/default-profile.png"
-          }
-          alt="Profile"
-          className="profile-image"
-        />
-        <h1 className="profile-name">{userData.full_name}</h1>
-        <button className="follow-button">Follow</button>
-        <div className="social-buttons">
-          {userData.instagram && (
-            <a
-              href={userData.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-button instagram-button"
-            >
-              <img src="./src/assets/images/insta.png" alt="Instagram" />
-            </a>
-          )}
-          {userData.twitter && (
-            <a
-              href={userData.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-button twitter-button"
-            >
-              <img src="./src/assets/images/x.png" alt="Twitter" />
-            </a>
-          )}
+    <>
+      <div className="header__wrapper">
+        <button className="back-button" onClick={() => window.history.back()}>
+          <IoIosArrowBack />
+        </button>
+        <header></header>
+        <div className="cols__container">
+          <div className="left__col">
+            <div className="img__container">
+              <img
+                src={
+                  userData
+                    ? userData.image
+                    : "./src/assets/images/default-profile.png"
+                }
+                alt="Anna Smith"
+              />
+              <p></p>
+            </div>
+            <div className="personal_details">
+              <div className="p_details">
+                <h2>{userData.full_name}</h2>
+                <p>{userData.bio}</p>
+                <p className="about">{userData.about}</p>
+              </div>
+            </div>
+            <div className="buttons">
+              {userData.id == profileUser.id ? (
+                <Link to="/logout">
+                  <button className="btn logout-button">Logout</button>
+                </Link>
+              ) : (
+                ""
+              )}
+              <button className="btn edit-button">Edit</button>
+            </div>
+          </div>
         </div>
-        {userData.id === profileUser.id && (
-          <Link to="/logout">
-            {" "}
-            <button className="btn logout-button">Logout</button>
-          </Link>
-        )}
       </div>
-      <div className="profile-about">
-        <p>{userData.about}</p>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -632,6 +632,7 @@ body.nav-active { overflow: hidden; }
   padding: 20px;
   border-radius: var(--radius-16);
   transition: var(--transition-1);
+
 }
 
 .feature-card:is(:hover, :focus-within) { transform: translateY(-5px); }
