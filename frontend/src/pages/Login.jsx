@@ -3,6 +3,7 @@ import "../styles/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import api from "../api";
+import { IoIosArrowBack } from "react-icons/io";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +36,11 @@ const Login = () => {
 
   return (
     <div className="form-container">
+       <Link to="/">
+          <button className="back-button">
+            <IoIosArrowBack />
+          </button>
+        </Link>
       <form onSubmit={handleSubmit} className="form">
         <p className="title">Login </p>
         {error && <p className="error-message">{error}</p>}

@@ -75,7 +75,7 @@ const StartWriting = () => {
       </button>
       <form className="start-writing-form" onSubmit={handlePublish}>
         {error && <p className="error-message">{error}</p>}
-        <div className="image-upload-section">
+        <div className="image-upload-section-writting ">
           {image ? (
             <img
               src={URL.createObjectURL(image)}

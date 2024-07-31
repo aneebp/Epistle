@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/form.css";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Register = () => {
   const [full_name, setfull_name] = useState("");
@@ -39,6 +40,11 @@ const Register = () => {
 
   return (
     <div className="form-container">
+      <Link to="/">
+        <button className="back-button">
+          <IoIosArrowBack />
+        </button>
+      </Link>
       <form onSubmit={handleSubmit} className="form">
         <p className="title">Register </p>
         {error && <p className="error-message">{error}</p>}
@@ -95,7 +101,7 @@ const Register = () => {
           </button>
         </div>
         <p className="signin">
-          Already have an acount ? <Link to="/">Login</Link>
+          Already have an acount ? <Link to="/login">Login</Link>
         </p>
       </form>
     </div>

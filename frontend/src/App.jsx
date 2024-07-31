@@ -11,6 +11,7 @@ import Blogdetails from "./pages/Blogdetails";
 import Startwriting from "./pages/Startwriting";
 import Profile from "./pages/Profile";
 import TopicBlog from "./pages/TopicBlog";
+import ProfileEditing from "./pages/ProfileEditing";
 
 function Logout() {
   localStorage.clear();
@@ -43,6 +44,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile></Profile>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/profile/update"
+            element={
+              <ProtectedRoute>
+                <ProfileEditing></ProfileEditing>
               </ProtectedRoute>
             }
           ></Route>

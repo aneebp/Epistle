@@ -38,13 +38,15 @@ const Profile = () => {
   if (!userData) {
     return <h2>No User </h2>;
   }
-  console.log(userData);
+  console.log("profile", userData);
   return (
     <>
       <div className="header__wrapper">
-        <button className="back-button" onClick={() => window.history.back()}>
-          <IoIosArrowBack />
-        </button>
+        <Link to="/">
+          <button className="back-button">
+            <IoIosArrowBack />
+          </button>
+        </Link>
         <header></header>
         <div className="cols__container">
           <div className="left__col">
@@ -74,7 +76,13 @@ const Profile = () => {
               ) : (
                 ""
               )}
-              <button className="btn edit-button">Edit</button>
+              {userData.id == profileUser.id ? (
+                <Link to="/profile/update">
+                  <button className="btn edit-button">Edit</button>
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

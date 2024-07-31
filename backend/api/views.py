@@ -7,6 +7,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.db.models import Sum
+from rest_framework.parsers import MultiPartParser, FormParser
 # Restframework
 from rest_framework import status
 from rest_framework.decorators import api_view, APIView
@@ -50,9 +51,35 @@ class UserProfileView(generics.RetrieveAPIView):
         return Response(serializer.data)
 
 
-
-
 class ProfileView(generics.RetrieveUpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = api_serializer.ProfileSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_object(self):
+        user = self.request.user
+        return user.profile
+
+    def put(self, request, *args, **kwargs):
+        profile = self.get_object()
+        serializer = self.get_serializer(profile, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = api_serializer.ProfileSerializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def get_object(self):
+        user = self.request.user
+        return user.profile
+
+    def put(self, request, *args, **kwargs):
+        profile = self.get_object()
+        serializer = self.get_serializer(profile, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
     permission_classes = (AllowAny,)
     serializer_class = api_serializer.ProfileSerializer
 
@@ -62,6 +89,8 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         user = api_models.User.objects.get(id=user_id)
         profile = api_models.Profile.objects.get(user=user)
         return profile
+    
+    
 
 
 class CategoryView(generics.ListAPIView):
