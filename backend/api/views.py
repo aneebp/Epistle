@@ -54,6 +54,7 @@ class UserProfileView(generics.RetrieveAPIView):
 class ProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = api_serializer.ProfileSerializer
+    #used file uploads
     parser_classes = (MultiPartParser, FormParser)
 
     def get_object(self):
@@ -61,10 +62,13 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         return user.profile
 
     def put(self, request, *args, **kwargs):
+        #TAKE THE PROFILE OF THE USER
         profile = self.get_object()
+        #ADD THE VALUE TO THE PROFIEL, PARTILA=TRUE IS GONNA allows partial updates, meaning you don't need to provide all fields in the request.
         serializer = self.get_serializer(profile, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        #RETURN THE NEW DATA
         return Response(serializer.data)
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = api_serializer.ProfileSerializer

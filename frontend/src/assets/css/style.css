@@ -704,8 +704,10 @@ body.nav-active { overflow: hidden; }
 }
 
 .tag-btn img {
-  width: 100%;
-  max-width: 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; 
 }
 
 
