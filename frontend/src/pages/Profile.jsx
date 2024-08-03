@@ -42,11 +42,11 @@ const Profile = () => {
   return (
     <>
       <div className="header__wrapper">
-        <Link to="/">
-          <button className="back-button">
-            <IoIosArrowBack />
-          </button>
-        </Link>
+        
+      <button className="back-button" onClick={() => window.history.back()}>
+        <IoIosArrowBack />
+      </button>
+       
         <header></header>
         <div className="cols__container">
           <div className="left__col">

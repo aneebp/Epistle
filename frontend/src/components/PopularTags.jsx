@@ -14,7 +14,6 @@ const PopularTags = () => {
     };
     fetchdata();
   }, []);
-  console.log("toô]", topics);
   return (
     <>
       <section className="tags" id="tags" aria-labelledby="tag-label">

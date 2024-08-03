@@ -4,16 +4,17 @@ import { IoIosArrowBack } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 import { IoIosBookmark } from "react-icons/io";
-import Header from "../components/Header";
 import BlogPost from "../components/BlogPost";
 import Footer from "../components/Footer";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 import api from "../api";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 const Blogdetails = () => {
   const [postDetails, setPostDetails] = useState(null);
+  const [userData, setUserData] = useState("");
   const [loading, setLoading] = useState(true);
-
   const { slug } = useParams();
 
   useEffect(() => {
@@ -29,6 +30,18 @@ const Blogdetails = () => {
     };
     fetchData();
   }, [slug]);
+  useEffect(() => {
+    const fetchuser = async () => {
+      try {
+        const res = await api.get("api/user/profile/");
+        setUserData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchuser();
+  }, []);
+
   return (
     <>
       {loading ? (
@@ -69,15 +82,24 @@ const Blogdetails = () => {
                 <p className="blog-description">{postDetails.description}</p>
 
                 <div className="button-group">
-                  <button className="like-button">
-                    <FaHeart></FaHeart>
-                  </button>
-                  <button className="comment-button">
-                    <FaComment></FaComment>
-                  </button>
-                  <button className="bookmark-button">
-                    <IoIosBookmark />
-                  </button>
+                  {userData.id == postDetails.user.id ? (
+                    <Link to={`/blogdetail/update/${postDetails.slug}`}>
+                      <button className="bookmark-button">
+                        <FaEdit />
+                      </button>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                  {userData.id == postDetails.user.id ? (
+                    <Link to={`/blogdetail/update/${postDetails.slug}`}>
+                      <button className="bookmark-button">
+                        <MdDelete />
+                      </button>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 
@@ -94,6 +116,7 @@ const Blogdetails = () => {
           <div className="blog-posts">
             <BlogPost />
           </div>
+          <Footer></Footer>
         </>
       )}
     </>

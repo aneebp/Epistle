@@ -27,6 +27,14 @@ const ProfileEditing = () => {
       setImagePreview(URL.createObjectURL(file));
     }
   };
+  const [postDetails, setPostDetails] = useState({
+    title: "",
+    description: "",
+    image: "",
+    tags: "",
+    category: "",
+    status: "",
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

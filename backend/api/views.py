@@ -137,7 +137,7 @@ class LatestPosts(generics.ListCreateAPIView):
         serializer.save(user=self.request.user, profile=self.request.user.profile)
 
 
-class PostDetailsView(generics.RetrieveAPIView):
+class PostDetailsView(generics.RetrieveUpdateAPIView):
     permission_classes = [AllowAny]
     serializer_class = api_serializer.PostSerializer
 

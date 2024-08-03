@@ -12,6 +12,7 @@ import Startwriting from "./pages/Startwriting";
 import Profile from "./pages/Profile";
 import TopicBlog from "./pages/TopicBlog";
 import ProfileEditing from "./pages/ProfileEditing";
+import Blogupdate from "./pages/Blogupdate";
 
 function Logout() {
   localStorage.clear();
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/blogdetail/:slug"
             element={<Blogdetails></Blogdetails>}
+          ></Route>
+          <Route
+            path="/blogdetail/update/:slug"
+            element={<Blogupdate></Blogupdate>}
           ></Route>
           <Route
             path="/startwriting"
