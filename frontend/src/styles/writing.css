@@ -6,11 +6,6 @@
   --placeholder-color: #888;
 }
 
-body {
-  background-color: var(--bg-oxford-blue);
-  color: var(--text-color);
-}
-
 .start-writing-container {
   display: flex;
   flex-direction: column;
@@ -65,13 +60,13 @@ body {
   border: 1px solid var(--border-color);
   margin-bottom: 1rem;
   border-radius: 8px;
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
 }
 
 .uploaded-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
 }
 
 .image-placeholder {

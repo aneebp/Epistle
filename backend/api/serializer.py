@@ -1,8 +1,7 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
-from .models import Profile,User,Category,Post,Comment,Bookmark,Notification
+from .models import Profile,User,Category,Post
 from django.utils.dateformat import format
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -76,20 +75,6 @@ class CategorySerializer(serializers.ModelSerializer):
         ]
 
 
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = Comment
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super(CommentSerializer,self).__init__( *args, **kwargs)
-        request = self.context.get('request')
-        if request and request.method == 'POST':
-            self.Meta.depth = 0
-        else:
-            self.Meta.depth = 1
-
-
 class PostSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     used_id = serializers.IntegerField(source="user.id", required=False)
@@ -108,42 +93,3 @@ class PostSerializer(serializers.ModelSerializer):
             self.Meta.depth = 1
     def get_formatted_date(self, obj):
         return format(obj.date, 'd M Y')
-
-
-
-class BookmarkSerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = Bookmark
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super(BookmarkSerializer,self).__init__( *args, **kwargs)
-        request = self.context.get('request')
-        if request and request.method == 'POST':
-            self.Meta.depth = 0
-        else:
-            self.Meta.depth = 1
-
-
-class NotificationSerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = Notification
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super(NotificationSerializer,self).__init__( *args, **kwargs)
-        request = self.context.get('request')
-        if request and request.method == 'POST':
-            self.Meta.depth = 0
-        else:
-            self.Meta.depth = 1
-
-
-class AuthorSerializer(serializers.Serializer):
-    views = serializers.IntegerField(default=0)
-    posts = serializers.IntegerField(default=0)
-    likes = serializers.IntegerField(default=0)
-    bookmarks = serializers.IntegerField(default=0)
-
-    
-

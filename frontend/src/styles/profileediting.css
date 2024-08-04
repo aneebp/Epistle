@@ -6,10 +6,6 @@
     --placeholder-color: #888;
   }
   
-  body {
-    background-color: var(--bg-oxford-blue);
-    color: var(--text-color);
-  }
   
   .start-writing-container {
     display: flex;
@@ -68,7 +64,7 @@
     overflow: hidden; /* Ensures image does not overflow the container */
   }
   
-  .uploaded-image {
+  .image-upload-section-pro  .uploaded-image {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -26,7 +26,7 @@ const Register = () => {
         password,
         password2,
       });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error.response.data); // Log the error details from the server
       setError(

@@ -13,10 +13,6 @@ urlpatterns = [
     path('posts/',api_views.PostListView.as_view(),name="posts"),
     path('posts/latest-post/',api_views.LatestPosts.as_view(),name="posts"),
     path('post/details/<slug:slug>/',api_views.PostDetailsView.as_view(),name='posts_details'),
-    path('post/like',api_views.LikeView.as_view(),name='post_like'),
-    path('post/comment',api_views.CommentView.as_view(),name='comment'),
-    path('post/bookmark',api_views.BookmarkView.as_view(),name="bookmark"),
-    path('author/dashboard/<user_id>',api_views.AuthorDashboardView.as_view(),name='dashboard')
 
     
 ]

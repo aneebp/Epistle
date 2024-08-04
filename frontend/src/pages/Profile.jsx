@@ -38,15 +38,13 @@ const Profile = () => {
   if (!userData) {
     return <h2>No User </h2>;
   }
-  console.log("profile", userData);
   return (
     <>
       <div className="header__wrapper">
-        
-      <button className="back-button" onClick={() => window.history.back()}>
-        <IoIosArrowBack />
-      </button>
-       
+        <button className="back-button" onClick={() => window.history.back()}>
+          <IoIosArrowBack />
+        </button>
+
         <header></header>
         <div className="cols__container">
           <div className="left__col">
