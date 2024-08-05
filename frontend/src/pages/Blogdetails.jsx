@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "../styles/blogdetail.css";
 import { IoIosArrowBack } from "react-icons/io";
-import { FaHeart } from "react-icons/fa6";
-import { FaComment } from "react-icons/fa";
-import { IoIosBookmark } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 import BlogPost from "../components/BlogPost";
 import Footer from "../components/Footer";
-import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
 import api from "../api";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 const Blogdetails = () => {
   const [postDetails, setPostDetails] = useState(null);
   const [userData, setUserData] = useState("");
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +30,19 @@ const Blogdetails = () => {
     };
     fetchData();
   }, [slug]);
+  const deletehandle = async (slug) => {
+    try {
+      const res = await api.delete(`api/post/delete/${slug}/`);
+      if (res.status === 204) {
+        toast.success("Post Deleting...");
+        navigate("/");
+      } else {
+        alert("Failed to delete the task");
+      }
+    } catch (error) {
+      console.log("error deleting post", error);
+    }
+  };
   useEffect(() => {
     const fetchuser = async () => {
       try {
@@ -92,11 +105,11 @@ const Blogdetails = () => {
                     ""
                   )}
                   {userData.id == postDetails.user.id ? (
-                    <Link to={`/blogdetail/update/${postDetails.slug}`}>
-                      <button className="bookmark-button">
-                        <MdDelete />
-                      </button>
-                    </Link>
+                    <button className="bookmark-button">
+                      <MdDelete
+                        onClick={() => deletehandle(postDetails.slug)}
+                      />
+                    </button>
                   ) : (
                     ""
                   )}

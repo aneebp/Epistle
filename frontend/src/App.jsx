@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Allblogposts from "./pages/Allblogposts";
 import ScrollToTop from "./components/ScrollToTop";
 import Blogdetails from "./pages/Blogdetails";
@@ -18,52 +19,39 @@ function Logout() {
   localStorage.clear();
   return <Navigate to="/"></Navigate>;
 }
+
 function App() {
   return (
     <>
       <BrowserRouter>
-        <ScrollToTop></ScrollToTop>
+        <ScrollToTop />
+        <ToastContainer /> {/* Place the ToastContainer here */}
         <Routes>
-          <Route path="/login" element={<Login></Login>}></Route>
-          <Route path="/logout" element={<Logout></Logout>}></Route>
-          <Route path="/register" element={<Register></Register>}></Route>
-          <Route path="/" element={<Home></Home>}></Route>
-          <Route
-            path="/blogposts"
-            element={<Allblogposts></Allblogposts>}
-          ></Route>
-          <Route
-            path="/blogdetail/:slug"
-            element={<Blogdetails></Blogdetails>}
-          ></Route>
-          <Route
-            path="/blogdetail/update/:slug"
-            element={<Blogupdate></Blogupdate>}
-          ></Route>
-          <Route
-            path="/startwriting"
-            element={<Startwriting></Startwriting>}
-          ></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/blogposts" element={<Allblogposts />} />
+          <Route path="/blogdetail/:slug" element={<Blogdetails />} />
+          <Route path="/blogdetail/update/:slug" element={<Blogupdate />} />
+          <Route path="/startwriting" element={<Startwriting />} />
           <Route
             path="/profile/:id"
             element={
               <ProtectedRoute>
-                <Profile></Profile>
+                <Profile />
               </ProtectedRoute>
             }
-          ></Route>
+          />
           <Route
             path="/profile/update"
             element={
               <ProtectedRoute>
-                <ProfileEditing></ProfileEditing>
+                <ProfileEditing />
               </ProtectedRoute>
             }
-          ></Route>
-          <Route
-            path="/topic/post/:slug"
-            element={<TopicBlog></TopicBlog>}
-          ></Route>
+          />
+          <Route path="/topic/post/:slug" element={<TopicBlog />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -13,6 +13,7 @@ urlpatterns = [
     path('posts/',api_views.PostListView.as_view(),name="posts"),
     path('posts/latest-post/',api_views.LatestPosts.as_view(),name="posts"),
     path('post/details/<slug:slug>/',api_views.PostDetailsView.as_view(),name='posts_details'),
+    path('post/delete/<slug:slug>/',api_views.PostDeleteView.as_view(),name='post_delete'),
 
     
 ]

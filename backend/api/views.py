@@ -7,6 +7,7 @@ from rest_framework.permissions import AllowAny
 # Custom Imports
 from api import serializer as api_serializer
 from api import models as api_models
+from rest_framework import status
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -125,5 +126,19 @@ class PostDetailsView(generics.RetrieveUpdateAPIView):
         posts.save()
         return posts
 
+class PostDeleteView(generics.DestroyAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = api_serializer.PostSerializer
 
-    
+    def get_queryset(self):
+        return api_models.Post.objects.filter(user=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            post = self.get_queryset().get(slug=kwargs['slug'])
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except api_models.Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
