@@ -3,65 +3,21 @@ import api from "../api";
 import { IoIosArrowBack } from "react-icons/io";
 import "../styles/profileediting.css";
 import { useNavigate } from "react-router-dom";
+import defaultProfileImage from "../assets/images/default-profile.png";
+import { ACCESS_TOKEN } from "../constants";
 
 const ProfileEditing = () => {
-  const [userData, setUserData] = useState({
-    id: "",
-    full_name: "",
-    email: "",
-    image: null,
-    bio: "",
-    about: "",
-  });
+  const [id, setId] = useState(null);
+  const [full_name, setFull_name] = useState("");
+  const [image, setImage] = useState(null);
+  const [bio, setBio] = useState("");
+  const [about, setAbout] = useState("");
 
-  const [imagePreview, setImagePreview] = useState(null);
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setUserData((prevData) => ({
-        ...prevData,
-        image: file,
-      }));
-      setImagePreview(URL.createObjectURL(file));
-    }
-  };
-  const [postDetails, setPostDetails] = useState({
-    title: "",
-    description: "",
-    image: "",
-    tags: "",
-    category: "",
-    status: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    for (const key in userData) {
-      if (userData[key] !== null) {
-        formData.append(key, userData[key]);
-      }
-    }
-
-    try {
-      await api.put(`api/user/profile/${userData.id}/`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      navigate(`/profile/${userData.id}`);
-    } catch (error) {
-      console.log("Error during updating user profile", error);
+      setImage(e.target.files[0]);
     }
   };
 
@@ -69,14 +25,41 @@ const ProfileEditing = () => {
     const fetchUserData = async () => {
       try {
         const res = await api.get("api/user/profile/");
-        setUserData(res.data);
-        setImagePreview(res.data.image);
+        const Prouser = res.data;
+        setId(Prouser.id);
+        setFull_name(Prouser.full_name);
+        setImage(Prouser.image || defaultProfileImage);
+        setBio(Prouser.bio);
+        setAbout(Prouser.about);
       } catch (error) {
         console.log("Error fetching user data", error);
       }
     };
     fetchUserData();
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("full_name", full_name);
+    if (image && typeof image === "object") {
+      formData.append("image", image);
+    }
+    formData.append("bio", bio);
+    formData.append("about", about);
+    try {
+      const token = localStorage.getItem(ACCESS_TOKEN);
+      await api.put(`api/user/profile/${id}/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigate(`/profile/${id}`);
+    } catch (error) {
+      console.log("Error during updating user profile", error);
+    }
+  };
 
   return (
     <div className="start-writing-container">
@@ -85,14 +68,17 @@ const ProfileEditing = () => {
       </button>
       <form className="start-writing-form" onSubmit={handleSubmit}>
         <div className="image-upload-section-pro">
-          {imagePreview ? (
-            <img src={imagePreview} alt="Profile" className="uploaded-image" />
+          {image ? (
+            <img
+              src={
+                typeof image === "string" ? image : URL.createObjectURL(image)
+              }
+              alt="Uploaded"
+              className="uploaded-image"
+            />
           ) : (
             <div className="non-image">
-              <img
-                src="./src/assets/images/default-profile.png"
-                alt="Default Profile"
-              />
+              <img src={defaultProfileImage} alt="Default" />
               <div className="image-placeholder">Upload an image</div>
             </div>
           )}
@@ -108,8 +94,8 @@ const ProfileEditing = () => {
           placeholder="Name"
           name="full_name"
           className="input-field title-input"
-          value={userData.full_name || ""}
-          onChange={handleInputChange}
+          value={full_name}
+          onChange={(e) => setFull_name(e.target.value)}
           required
         />
         <input
@@ -117,16 +103,16 @@ const ProfileEditing = () => {
           placeholder="Bio"
           name="bio"
           className="input-field title-input"
-          value={userData.bio || ""}
-          onChange={handleInputChange}
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
           required
         />
         <textarea
           placeholder="About"
           name="about"
           className="input-field description-input"
-          value={userData.about || ""}
-          onChange={handleInputChange}
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
         ></textarea>
         <div className="buttons-container">
           <button type="submit" className="publish-button">

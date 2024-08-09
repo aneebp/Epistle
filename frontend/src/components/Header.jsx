@@ -31,7 +31,7 @@ const Header = () => {
                   src="./src/assets/images/logo.svg"
                   width="119"
                   height="37"
-                  alt="Wren logo"
+                  alt="Epistle logo"
                 />
               </a>
 

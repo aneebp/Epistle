@@ -48,30 +48,11 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         #RETURN THE NEW DATA
+
+        if 'full_name' in request.data:
+                profile.user.full_name = request.data['full_name']
+                profile.user.save()
         return Response(serializer.data)
-    permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = api_serializer.ProfileSerializer
-    parser_classes = (MultiPartParser, FormParser)
-
-    def get_object(self):
-        user = self.request.user
-        return user.profile
-
-    def put(self, request, *args, **kwargs):
-        profile = self.get_object()
-        serializer = self.get_serializer(profile, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-    permission_classes = (AllowAny,)
-    serializer_class = api_serializer.ProfileSerializer
-
-    def get_object(self):
-        #get user id from url
-        user_id = self.kwargs['user_id']
-        user = api_models.User.objects.get(id=user_id)
-        profile = api_models.Profile.objects.get(user=user)
-        return profile
     
     
 

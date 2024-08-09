@@ -63,7 +63,7 @@
   }
   .buttons .logout-button {
     position: absolute;
-    top: -589px;
+    top: -709px;
     right: 19px;
     padding: 10px 20px;
     background-color: var(--bg-oxford-blue-2);
@@ -78,7 +78,7 @@
   }
   .edit-button {
     position: absolute;
-    top: -280px;
+    top: -400px;
     right: 19px;
     padding: 10px 20px;
     background-color: #f44336;

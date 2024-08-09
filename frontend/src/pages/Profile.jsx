@@ -23,6 +23,7 @@ const Profile = () => {
     };
     fetchdata();
   }, [id]);
+  console.log("userdataddddd", userData);
   useEffect(() => {
     const fetchdata = async () => {
       try {

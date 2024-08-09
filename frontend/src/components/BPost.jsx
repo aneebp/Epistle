@@ -57,7 +57,7 @@ const BPost = ({ post }) => {
                   )}
 
                   <div>
-                    <p className="card-title">{post.user.full_name}</p>
+                    <p className="card-title">{post.profile.full_name}</p>
 
                     <p className="card-subtitle">{post.formatted_date}</p>
                   </div>

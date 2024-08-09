@@ -63,11 +63,13 @@ const Blogdetails = () => {
         <>
           <div className="blog-detail">
             {/* Back Button */}
-            <Link to="/blogposts">
-              <button className="back-button">
-                <IoIosArrowBack />
-              </button>
-            </Link>
+
+            <button
+              className="back-button"
+              onClick={() => window.history.back()}
+            >
+              <IoIosArrowBack />
+            </button>
 
             <div className="blog-header">
               <img
