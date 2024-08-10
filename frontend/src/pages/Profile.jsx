@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { ACCESS_TOKEN } from "../constants";
 
 const Profile = () => {
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [profileUser, setProfileUser] = useState(null);
   const { id } = useParams();

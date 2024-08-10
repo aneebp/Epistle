@@ -35,11 +35,9 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = api_serializer.ProfileSerializer
     #used file uploads
     parser_classes = (MultiPartParser, FormParser)
-
     def get_object(self):
         user = self.request.user
         return user.profile
-
     def put(self, request, *args, **kwargs):
         #TAKE THE PROFILE OF THE USER
         profile = self.get_object()
@@ -48,11 +46,15 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         #RETURN THE NEW DATA
-
-        if 'full_name' in request.data:
-                profile.user.full_name = request.data['full_name']
-                profile.user.save()
         return Response(serializer.data)
+    
+
+    def get_object(self):
+        #get user id from url
+        user_id = self.kwargs['user_id']
+        user = api_models.User.objects.get(id=user_id)
+        profile = api_models.Profile.objects.get(user=user)
+        return profile
     
     
 
