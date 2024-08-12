@@ -92,11 +92,3 @@ To run this project locally, follow these steps:
 ## Contributing
 
 Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- Special thanks to the open-source community for the tools and libraries that made this project possible.
