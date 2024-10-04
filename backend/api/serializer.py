@@ -49,15 +49,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id","username","email","full_name","profile_image","bio","about"]
 
 
-class PasswordResetSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+# class PasswordResetSerializer(serializers.Serializer):
+#     email = serializers.EmailField()
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-
+    email = serializers.CharField(source='user.email', allow_blank=True, required=False)
     class Meta:
         model = Profile
-        fields = ["id", "full_name", "bio", "about","image"]
+        fields = ["id","email" ,"full_name","bio", "about","image"]
 
     
 

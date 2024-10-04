@@ -53,23 +53,14 @@ class Profile(models.Model):
 
 
 @receiver(post_save, sender=User)
-def update_related_profiles(sender, instance, **kwargs):
-    profile = instance.profile
-    profile.full_name = instance.full_name
-    profile.save()
-
-    # Update related Posts with the new full_name
-    Post.objects.filter(user=instance).update(profile=profile)
-
-def create_user_profile(sender, instance, created, **kwargs):
+def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
-
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
-post_save.connect(create_user_profile, sender=User)
-post_save.connect(save_user_profile, sender=User)
+        # Create profile only if it does not exist
+        Profile.objects.get_or_create(user=instance, full_name=instance.full_name)
+    else:
+        # Update the Profile when the User is updated
+        instance.profile.full_name = instance.full_name
+        instance.profile.save()
 
 
 class Category(models.Model):

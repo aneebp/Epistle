@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import api from "../api";
 import { Link, useParams } from "react-router-dom";
 import { ACCESS_TOKEN } from "../constants";
+import defaultProfileImage from "../assets/images/default-profile.png";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -23,7 +24,6 @@ const Profile = () => {
     };
     fetchdata();
   }, [id]);
-  console.log("userdataddddd", userData);
   useEffect(() => {
     const fetchdata = async () => {
       try {
@@ -52,14 +52,12 @@ const Profile = () => {
             <div className="img__container">
               <img
                 src={
-                  userData
-                    ? userData.image
-                    : "./src/assets/images/default-profile.png"
+                  userData.image == null ? defaultProfileImage : userData.image
                 }
-                alt="Anna Smith"
+                alt=""
               />
-              <p></p>
             </div>
+
             <div className="personal_details">
               <div className="p_details">
                 <h2>{userData.full_name}</h2>
@@ -67,15 +65,17 @@ const Profile = () => {
                 <p className="about">{userData.about}</p>
               </div>
             </div>
+
+            {/* Move buttons here */}
             <div className="buttons">
-              {userData.id == profileUser.id ? (
+              {userData.email == profileUser.email ? (
                 <Link to="/logout">
                   <button className="btn logout-button">Logout</button>
                 </Link>
               ) : (
                 ""
               )}
-              {userData.id == profileUser.id ? (
+              {userData.email == profileUser.email ? (
                 <Link to="/profile/update">
                   <button className="btn edit-button">Edit</button>
                 </Link>

@@ -43,49 +43,48 @@
     display: block;
     box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
   }
+  .personal_details .p_details{
+    padding-top: 12rem;
+    padding-left: 5rem;
+  }
   .personal_details .p_details h2{
     color: white;
 
   }
-  .buttons{
-    position: relative;
-  }
-  .personal_details .p_details{
-    font-family: 'Poppins', sans-serif;
-    color: rgb(169, 170, 189);
-    padding-top: 12rem;
-    padding-left: 13rem;
-    text-align: start;
-  }
-  .personal_details .p_details .about{
-    margin-top: 2rem;
-    max-width: 800px;
-  }
-  .buttons .logout-button {
-    position: absolute;
-    top: -709px;
-    right: 19px;
-    padding: 10px 20px;
-    background-color: var(--bg-oxford-blue-2);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-  
-  .logout-button:hover {
-    background-color: var(--bg-oxford-blue);
-  }
-  .edit-button {
-    position: absolute;
-    top: -400px;
-    right: 19px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
- 
+ /* Adjust buttons to be in line under About section */
+.buttons {
+  margin-top: 2rem;
+  padding-left: 4rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Style for logout button */
+.buttons .logout-button {
+  padding: 10px 20px;
+  background-color: var(--bg-oxford-blue-2);
+  color: #fff;  
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.buttons .logout-button:hover {
+  background-color: var(--bg-oxford-blue);
+}
+
+/* Style for edit button */
+.buttons .edit-button {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.buttons .edit-button:hover {
+  background-color: #d32f2f;
+}
