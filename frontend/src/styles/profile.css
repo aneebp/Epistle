@@ -45,16 +45,21 @@
   }
   .personal_details .p_details{
     padding-top: 12rem;
-    padding-left: 5rem;
+    padding-left: 13rem;
   }
   .personal_details .p_details h2{
     color: white;
 
   }
+  .personal_details .p_details .profile_bio{
+    color: #e0d2d2;
+    margin-bottom: 1rem
+    ;
+  }
  /* Adjust buttons to be in line under About section */
 .buttons {
   margin-top: 2rem;
-  padding-left: 4rem;
+  padding-left: 13rem;
   display: flex;
   gap: 1rem;
 }

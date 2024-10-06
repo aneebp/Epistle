@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
+import defaultProfileImage from "../assets/images/default-profile.png";
 
 const Header = () => {
   const [user, setUser] = useState(null);

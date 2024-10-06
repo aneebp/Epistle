@@ -61,7 +61,7 @@ const Profile = () => {
             <div className="personal_details">
               <div className="p_details">
                 <h2>{userData.full_name}</h2>
-                <p>{userData.bio}</p>
+                <p className="profile_bio">{userData.bio}</p>
                 <p className="about">{userData.about}</p>
               </div>
             </div>
